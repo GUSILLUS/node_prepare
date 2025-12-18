@@ -18,6 +18,16 @@ class UserService {
     return users;
   }
 
+  async findByEmail(email) {
+    const user = await this.repository.findByEmail(email);
+
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+
+    return user;
+  }
+
   async getUserById(id) {
     const user = await this.repository.findById(id);
 
@@ -29,7 +39,10 @@ class UserService {
   }
 
   async createUser(userData) {
-    return await this.repository.create(userData);
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const userDataWithPassword = { ...userData, password: hashedPassword };
+
+    return await this.repository.create(userDataWithPassword);
   }
 
   async updateUser(id, userData) {

@@ -15,6 +15,11 @@ class UserRepository {
     return users.find(user => user.id === id);
   }
 
+  async findByEmail(email) {
+    const users = await this.findAll();
+    return users.find(user => user.email === email);
+  }
+
   async create(user) {
     const users = await this.findAll();
     const newUser = { id: crypto.randomUUID(), ...user };
