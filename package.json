@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Learning Node.js and Express",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
@@ -12,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http-error-classes": "^1.0.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
