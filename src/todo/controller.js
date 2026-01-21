@@ -72,12 +72,8 @@ class TodoController {
       const { id } = req.params;
       const userId = req.user.id;
       const { title, description, status } = req.body;
-      
-      const todoFields = Object.fromEntries(
-        Object.entries({ title, description, status }).filter(([_, value]) => value !== undefined)
-      );
 
-      const todo = await this.service.patchTodo(id, userId, todoFields);
+      const todo = await this.service.patchTodo(id, userId, { title, description, status });
 
       res.json(todo);
     } catch (error) {
