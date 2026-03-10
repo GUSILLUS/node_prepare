@@ -1,4 +1,6 @@
 import userService from './user.service.js';
+import jwt from 'jsonwebtoken';
+import { SECRET_KEY } from '../middleware/auth.middleware.js';
 
 class UserController {
   constructor(service) {
@@ -30,8 +32,8 @@ class UserController {
 
   createUser = async (req, res, next) => {
     try {
-      const { name, email } = req.body;
-      const user = await this.service.createUser({ name, email });
+      const { name, email, password } = req.body;
+      const user = await this.service.createUser({ name, email, password });
 
       res.status(201).json(user);
     } catch (error) {
