@@ -30,7 +30,7 @@ class AuthController {
 
   refreshToken = async (req, res, next) => {
     try {
-      const { refreshToken } = req.body;
+      const { token: refreshToken } = req.body;
       const result = await authService.refreshAccessToken(refreshToken);
       
       res.json(result);
